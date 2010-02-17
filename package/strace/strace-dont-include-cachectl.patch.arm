@@ -1,0 +1,15 @@
+--- strace-4.5.15/system.c      2007-01-17 07:22:36.000000000 +0800
++++ strace-4.5.15.new/system.c  2008-09-28 11:39:35.000000000 +0800
+@@ -70,9 +70,9 @@
+ #include <linux/capability.h>
+ #endif
+
+-#ifdef SYS_cacheflush
+-#include <asm/cachectl.h>
+-#endif
++//#ifdef SYS_cacheflush
++//#include <asm/cachectl.h>
++//#endif
+
+ #ifdef HAVE_LINUX_USTNAME_H
+ #include <linux/utsname.h>

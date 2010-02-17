@@ -1,0 +1,53 @@
+diff -urN MPlayer-1.0rc1.avr32/libswscale/yuv2rgb.c MPlayer-1.0rc1/libswscale/yuv2rgb.c
+--- MPlayer-1.0rc1.avr32/libswscale/yuv2rgb.c	2008-11-14 13:22:02.000000000 +0800
++++ MPlayer-1.0rc1/libswscale/yuv2rgb.c	2008-11-14 13:22:54.000000000 +0800
+@@ -221,6 +221,13 @@
+ 	g = c->table_gU[U] + c->table_gV[V];		\
+ 	b = c->table_bU[U];
+ 
++#define BGR(i)                                  \
++        V = pu[i];                              \
++        U = pv[i];                              \
++        r = c->table_rV[V];                     \
++        g = c->table_gU[U] + c->table_gV[V];            \
++        b = c->table_bU[U];
++
+ #define DST1(i)					\
+ 	Y = py_1[2*i];				\
+ 	dst_1[2*i] = r[Y] + g[Y] + b[Y];	\
+@@ -365,6 +372,24 @@
+ 	DST1(3);
+ EPILOG(8)
+ 
++PROLOG(yuv2bgr_c_16, uint16_t)
++        BGR(0);
++        DST1(0);
++        DST2(0);
++
++        BGR(1);
++        DST2(1);
++        DST1(1);
++
++        BGR(2);
++        DST1(2);
++        DST2(2);
++
++        BGR(3);
++        DST2(3);
++        DST1(3);
++EPILOG(8)
++
+ // This is exactly the same code as yuv2rgb_c_32 except for the types of
+ // r, g, b, dst_1, dst_2
+ PROLOG(yuv2rgb_c_8, uint8_t)
+@@ -628,8 +653,8 @@
+     case PIX_FMT_BGR24: return yuv2rgb_c_24_bgr;
+     case PIX_FMT_RGB565:
+     case PIX_FMT_BGR565:
+-    case PIX_FMT_RGB555:
+-    case PIX_FMT_BGR555: return yuv2rgb_c_16;
++    case PIX_FMT_RGB555: return yuv2rgb_c_16;
++    case PIX_FMT_BGR555: return yuv2bgr_c_16;
+     case PIX_FMT_RGB8:
+     case PIX_FMT_BGR8:  return yuv2rgb_c_8_ordered_dither;
+     case PIX_FMT_RGB4:

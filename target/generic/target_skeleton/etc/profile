@@ -8,6 +8,9 @@ export PATH=\
 /usr/bin/X11:\
 /usr/local/bin
 
+# Specify which input device to use for Touch Screen(tslib).
+export TSLIB_TSDEVICE=/dev/input/event1
+
 # If running interactively, then:
 if [ "$PS1" ]; then
 

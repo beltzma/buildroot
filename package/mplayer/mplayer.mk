@@ -47,6 +47,7 @@ $(MPLAYER_DIR)/.configured: $(MPLAYER_DIR)/.unpacked
 		--disable-mpdvdkit \
 		--disable-tv \
 		--enable-dynamic-plugins \
+		--enable-radio\
 	)
 	touch $@
 
