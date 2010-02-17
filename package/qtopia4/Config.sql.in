@@ -1,0 +1,36 @@
+config BR2_PACKAGE_QTOPIA4_MYSQL
+	bool "MySQL Driver"
+	help
+	  Build MySQL driver
+	  If unsure, say n.
+
+config BR2_PACKAGE_QTOPIA4_IBASE
+	bool "iBase Driver"
+	help
+	  Build iBase driver
+	  If unsure, say n.
+
+config BR2_PACKAGE_QTOPIA4_ODBC
+	bool "ODBC Driver"
+	help
+	  Build ODBC driver
+	  If unsure, say n.
+
+config BR2_PACKAGE_QTOPIA4_PSQL
+	bool "PostgreSQL Driver"
+	help
+	  Build PostgreSQL driver
+	  If unsure, say n.
+
+config BR2_PACKAGE_QTOPIA4_SQLITE
+	bool "SQLite 3 Driver"
+	help
+	  Build SQLite driver
+	  If unsure, say n.
+
+config BR2_PACKAGE_QTOPIA4_SQLITE2
+	bool "SQLite 2 Driver"
+	help
+	  Build SQLite 2 driver
+	  If unsure, say n.
+

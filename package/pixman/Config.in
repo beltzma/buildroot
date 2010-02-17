@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PIXMAN
+	bool "pixman"
+	help
+		Cairo pixel manager
+
+		http://cairographics.org/releases/
+

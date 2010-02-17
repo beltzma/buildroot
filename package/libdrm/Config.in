@@ -1,0 +1,7 @@
+config BR2_PACKAGE_LIBDRM
+	bool "libdrm"
+	select BR2_PACKAGE_PKGCONFIG
+	help
+	  Direct Rendering Manager
+
+	  http://dri.freedesktop.org/libdrm/

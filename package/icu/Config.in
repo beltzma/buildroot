@@ -1,0 +1,4 @@
+config BR2_PACKAGE_ICU
+	bool "icu"
+	help
+	  International Components for Unicode.

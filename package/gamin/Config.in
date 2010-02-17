@@ -1,0 +1,6 @@
+config BR2_PACKAGE_GAMIN
+	bool "gamin"
+	help
+	  the File Alteration Monitor
+
+	  http://www.gnome.org/~veillard/gamin/sources

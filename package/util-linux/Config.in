@@ -1,0 +1,8 @@
+config BR2_PACKAGE_UTIL-LINUX
+	bool "util-linux"
+	help
+	  Various useful/essential Linux utilities.
+
+	  Things like mkfs, mkswap, swapon, fdisk, mount, dmesg, etc...
+
+	  http://www.kernel.org/pub/linux/utils/util-linux/

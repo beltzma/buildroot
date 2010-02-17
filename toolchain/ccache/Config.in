@@ -1,0 +1,9 @@
+#
+
+comment "Ccache Options"
+
+config BR2_CCACHE
+	bool "Enable ccache support?"
+	help
+	    Enable ccache support?
+

@@ -1,0 +1,6 @@
+config BR2_PACKAGE_RAIDTOOLS
+	bool "raidtools"
+	help
+	  Utilities to support 'old-style' RAID disks.
+
+	  http://people.redhat.com/mingo/raidtools/

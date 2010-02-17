@@ -1,0 +1,8 @@
+#
+
+config BR2_PACKAGE_EXPAT
+	bool"expat"
+	select BR2_PACKAGE_PKGCONFIG
+	help
+	  The Expat XML Parser.
+

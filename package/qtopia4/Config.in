@@ -1,0 +1,277 @@
+config BR2_PACKAGE_QTOPIA4
+	bool "qtopia4"
+	select BR2_INSTALL_LIBSTDCPP
+	select BR2_PTHREADS_NATIVE
+	help
+	  Qtopia core 4.
+
+	  http://www.trolltech.com/
+
+config BR2_PACKAGE_QTOPIA4_DEBUG
+	bool "Compile with debug support"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  If unsure, say N.
+
+choice
+	prompt "Library type"
+	default BR2_PACKAGE_QTOPIA4_SHARED
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Selects the library type: Shared or Static
+
+config BR2_PACKAGE_QTOPIA4_SHARED
+	bool "Shared library"
+	help
+	  Create and use shared Qt libraries.
+	  If you have multiple programs that depend on Qt or intend to use
+	  plugins, say Y.
+
+config BR2_PACKAGE_QTOPIA4_STATIC
+	bool "Static Library"
+	help
+	  Create and use static Qt libraries.
+	  If you don't have multiple programs on the target that depends on
+	  Qt, then this will save you quite some of storage space.
+	  If unsure, say Y.
+
+endchoice
+
+choice
+	prompt "Qtopia 4 Core license type"
+	default BR2_PACKAGE_QTOPIA4_LICENSE_TYPE_GPL
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Selects the type of license you which to use for Qtopia 4 Core.
+
+config BR2_PACKAGE_QTOPIA4_LICENSE_TYPE_GPL
+	bool "GPL license"
+
+config BR2_PACKAGE_QTOPIA4_LICENSE_TYPE_COMMERCIAL
+	bool "Commercial license"
+
+endchoice
+
+config BR2_PACKAGE_QTOPIA4_GPL_LICENSE_APPROVED
+	bool "Approve Qtopia Core 4 GPL licence"
+	depends on BR2_PACKAGE_QTOPIA4 && BR2_PACKAGE_QTOPIA4_LICENSE_TYPE_GPL
+	help
+	  Select this if you approve the GNU GENERAL PUBLIC LICENSE Version 2
+	  on the Qtopia Core 4 library. By doing this you will not be asked
+	  while the library is compiled. Please read and understand the GPL
+	  licence before approving this.
+
+	  For full GPL version 2 see http://www.gnu.org/licenses/gpl.txt
+
+
+config BR2_PACKAGE_QTOPIA4_COMMERCIAL_USERNAME
+	string "Qtopia Core 4 Commercial License Username"
+	default ""
+	depends on BR2_PACKAGE_QTOPIA4 && BR2_PACKAGE_QTOPIA4_LICENSE_TYPE_COMMERCIAL
+	help
+	  Commercial users can download their source directly by
+	  providing a username.
+
+config BR2_PACKAGE_QTOPIA4_COMMERCIAL_PASSWORD
+	string "Qtopia Core 4 Commercial License Password"
+	default ""
+	depends on BR2_PACKAGE_QTOPIA4 && BR2_PACKAGE_QTOPIA4_LICENSE_TYPE_COMMERCIAL
+	help
+	  Commercial users can download their source directly by
+	  providing a password.
+
+config BR2_PACKAGE_QTOPIA4_QT3SUPPORT
+	bool "Compatibility with Qt3"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Turns on support for older Qt3. This will create an additional
+	  library with proxy code and increase the space required on target.
+	  If unsure say n.
+
+config BR2_PACKAGE_QTOPIA4_DEPTHS
+	string "color depths to support"
+	default "-depths 24,16,8"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Which color depths to support for the library. Default is "-depths
+	  24,16,8". Different depths are specified by a comma separated list.
+
+config BR2_PACKAGE_QTOPIA4_GIF
+	bool "Enable GIF support"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  This compiles and installs the plugin for GIF reading support.
+
+config BR2_PACKAGE_QTOPIA4_LIBMNG
+	bool "Enable libmng support"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  This compiles and installs the plugin for MNG support.
+
+choice
+	prompt "JPEG support"
+	depends on BR2_PACKAGE_QTOPIA4
+	default BR2_PACKAGE_QTOPIA4_NOJPEG
+	help
+	  Select libjpeg support.
+
+config BR2_PACKAGE_QTOPIA4_NOJPEG
+	bool "No jpeg support"
+	help
+	  Disable JPEG support
+
+config BR2_PACKAGE_QTOPIA4_SYSTEMJPEG
+	select BR2_PACKAGE_JPEG
+	bool "System libjpeg"
+	help
+	  Link against system libjpeg
+
+config BR2_PACKAGE_QTOPIA4_QTJPEG
+	bool "Use Qt bundled libjpeg"
+	help
+	  Link against libjpeg proveded with Qt
+endchoice
+
+choice
+	prompt "PNG support"
+	depends on BR2_PACKAGE_QTOPIA4
+	default BR2_PACKAGE_QTOPIA4_NOPNG
+	help
+	  Select which library to use if PNG support should be enabled.
+
+config BR2_PACKAGE_QTOPIA4_NOPNG
+	bool "No PNG support"
+
+config BR2_PACKAGE_QTOPIA4_SYSTEMPNG
+	bool "System libpng"
+	select BR2_PACKAGE_LIBPNG
+
+config BR2_PACKAGE_QTOPIA4_QTPNG
+	bool "Use Qt bundled libpng"
+endchoice
+
+choice
+	prompt "TIFF support"
+	depends on BR2_PACKAGE_QTOPIA4
+	default BR2_PACKAGE_QTOPIA4_NOTIFF
+	help
+	  Select which library to use if TIFF support should be enabled.
+
+config BR2_PACKAGE_QTOPIA4_NOTIFF
+	bool "No TIFF support"
+
+config BR2_PACKAGE_QTOPIA4_SYSTEMTIFF
+	bool "System libtiff"
+	select BR2_PACKAGE_TIFF
+
+config BR2_PACKAGE_QTOPIA4_QTTIFF
+	bool "Use Qt bundled libtiff"
+endchoice
+
+choice
+	prompt "zlib support"
+	depends on BR2_PACKAGE_QTOPIA4
+	default BR2_PACKAGE_QTOPIA4_QTZLIB
+	help
+	  Select zlib support.
+
+config BR2_PACKAGE_QTOPIA4_QTZLIB
+	bool "Qt zlib"
+	help
+	  Use the zlib bundled with Qt.
+	
+config BR2_PACKAGE_QTOPIA4_SYSTEMZLIB
+	bool "System zlib"
+	select BR2_PACKAGE_ZLIB
+	help
+	  Use the shared zlib from the system.
+endchoice
+								
+choice
+	prompt "freetype2 support"
+	depends on BR2_PACKAGE_QTOPIA4
+	default BR2_PACKAGE_QTOPIA4_NOFREETYPE
+	help
+	  Select freetype2 support.
+
+config BR2_PACKAGE_QTOPIA4_NOFREETYPE
+        bool "no freetype2 support"
+	help
+	  Do not compile in Freetype2 support.
+
+
+config BR2_PACKAGE_QTOPIA4_QTFREETYPE
+	bool "Qt freetype2"
+	help
+	  Use the libfreetype bundled with Qt.
+	
+config BR2_PACKAGE_QTOPIA4_SYSTEMFREETYPE
+	bool "System freetype2"
+	select BR2_PACKAGE_FREETYPE
+	help
+	  Use shared libfreetype from the target system.
+	  See http://www.freetype.org/
+endchoice
+	
+config BR2_PACKAGE_QTOPIA4_EMB_PLATFORM
+	string "The embedded platform we are making Qtopia4 for"
+	default "arm"	if BR2_arm
+	default "arm"	if BR2_armeb
+	default "avr32"	if BR2_avr32
+	default "x86"	if BR2_i386
+	default "x86_64"	if BR2_x86_64
+	default "mips"	if BR2_mips
+	default "mips"	if BR2_mipsel
+# Not that I really believe these will work..
+	default "generic"	if BR2_alpha
+	default "generic"	if BR2_chris
+	default "generic"	if BR2_m68k
+	default "generic"	if BR2_nios2
+	default "generic"	if BR2_powerpc
+	default "generic"	if BR2_sh
+	default "generic"	if BR2_sh64
+	default "generic"	if BR2_sparc
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  The target platform.
+
+menuconfig BR2_PACKAGE_QTOPIA4_SQL_MODULE
+	bool "SQL Module"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Compile Qtopia SQL Module
+if BR2_PACKAGE_QTOPIA4_SQL_MODULE
+source "package/qtopia4/Config.sql.in"
+endif
+
+config BR2_PACKAGE_QTOPIA4_XMLPATTERNS
+	bool "XML Patterns Module"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Build QtXmlPatterns module.
+	  If unsure, say n
+
+config BR2_PACKAGE_QTOPIA4_SVG
+	bool "SVG Module"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Build the SVG module.
+	  If unsure, say n
+
+config BR2_PACKAGE_QTOPIA4_WEBKIT
+	bool "WebKit Module"
+	depends on BR2_PACKAGE_QTOPIA4
+	help
+	  Build the WebKit module.
+	  If unsure, say n.
+
+config BR2_PACKAGE_QTOPIA4_OPENSSL
+	bool "Enable OpenSSL support"
+	depends on BR2_PACKAGE_QTOPIA4
+	select BR2_PACKAGE_OPENSSL
+	help
+	  Enable support for the OpenSSL encryption library. If you use
+	  QSslSocket say y here, otherwise, say no to save space on the
+	  target.
+	  If unsure, say n.
+

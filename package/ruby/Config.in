@@ -1,0 +1,6 @@
+config BR2_PACKAGE_RUBY
+	bool "ruby"
+	help
+	  Object Oriented Scripting Language.
+
+	  http://www.ruby-lang.org/
