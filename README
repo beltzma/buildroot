@@ -10,6 +10,21 @@ Es muss lediglich an der libc etwas gepatched werden!
 
 :
 
-  sudo sh -c "cat libc.patch | (cd /usr/include && patch -p0)"
+  $ sudo apt-get install make flex bison m4 ncurses-dev gettext texi2html \
+  texinfo zlib1g zlib1g-dev liblzo2-2 liblzo2-dev libacl1 libacl1-dev \
+  libglib2.0-dev autoconf automake libtool g++
+  $ sudo sh -c "cat libc.patch | (cd /usr/include && patch -p0)"
+  
+Build:
+......
+
+es sind nur wenige Befehle noetig um das buildroot durchkompilieren zu lassen:
+
+:
+
+  $ chmod u+x scripts/wget.sh
+  $ make menuconfig
+  $ make BOARD=AT91 getconfig
+  $ make 2>&1 | tee at91sam9.log
 
 
