@@ -1,0 +1,15 @@
+README
+======
+
+Alle Aenderungen damit das buildroot auf einem Ubuntu 9.10 durchlaeuft sind bereits enthalten!
+
+Vorarbeit:
+..........
+
+Es muss lediglich an der libc etwas gepatched werden!
+
+:
+
+  sudo sh -c "cat libc.patch | (cd /usr/include && patch -p0)"
+
+

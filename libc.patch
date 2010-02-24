@@ -1,0 +1,14 @@
+--- stdio.h.orig	2010-02-24 20:40:23.471358052 +0100
++++ stdio.h	2010-02-17 19:49:33.562094251 +0100
+@@ -648,7 +648,10 @@
+    cancellation point.  But due to similarity with an POSIX interface
+    or due to the implementation it is a cancellation point and
+    therefore not marked with __THROW.  */
+-extern _IO_ssize_t getline (char **__restrict __lineptr,
++// aenderung damit buildroot durchlaeuft
++// marcel
++//extern _IO_ssize_t getline (char **__restrict __lineptr,
++extern _IO_ssize_t parseline (char **__restrict __lineptr,
+ 			    size_t *__restrict __n,
+ 			    FILE *__restrict __stream) __wur;
+ #endif
